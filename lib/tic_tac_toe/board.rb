@@ -19,16 +19,6 @@ class Board
     puts "#{horizontal_divider}\n\n"
   end
 
-  private
-
-  def empty_board
-    Array.new(9)
-  end
-
-  def clear
-    @board_state = empty_board
-  end
-
   def add(element, row, column)
     index = (row * 3) + column
     if @board_state[index].nil?
@@ -40,20 +30,18 @@ class Board
     end
   end
 
-  def draw?
-    full? && !x_wins? && !o_wins?
+  def game_end?
+    !winner.nil? || full?
+  end
+
+  private
+
+  def empty_board
+    Array.new(9)
   end
 
   def full?
     @board_state.none?(&:nil?)
-  end
-
-  def x_wins?
-    winner == 'x'
-  end
-
-  def o_wins?
-    winner == 'o'
   end
 
   def winner
