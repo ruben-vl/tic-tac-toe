@@ -6,6 +6,18 @@ class Board
     @board_state = empty_board
   end
 
+  def print_board # rubocop:disable Metrics/AbcSize
+    horizontal_divider = '+---+---+---+'
+    (0..2).each do |row|
+      puts horizontal_divider
+      cell1 = @board_state[(row * 3)].nil? ? ' ' : @board_state[(row * 3)]
+      cell2 = @board_state[(row * 3) + 1].nil? ? ' ' : @board_state[(row * 3) + 1]
+      cell3 = @board_state[(row * 3) + 2].nil? ? ' ' : @board_state[(row * 3) + 2]
+      puts "| #{cell1} | #{cell2} | #{cell3} |"
+    end
+    puts horizontal_divider
+  end
+
   private
 
   def empty_board
