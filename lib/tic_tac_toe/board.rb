@@ -25,7 +25,6 @@ class Board
       @board_state[index] = element
       true
     else
-      puts "Index #{index} is not empty"
       false
     end
   end
