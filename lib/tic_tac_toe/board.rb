@@ -30,6 +30,7 @@ class Board
   end
 
   def game_end?
+    puts winning_diagonal
     !winner.nil? || full?
   end
 
@@ -73,12 +74,18 @@ class Board
     nil
   end
 
-  def winning_diagonal
+  def winning_diagonal # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
     diagonal1_idxs = [0, 4, 8]
-    return diagonal1_idxs[0] if diagonal1_idxs.none?(&:nil?) && diagonal1_idxs.uniq.size == 1
+    diagonal1_elements = diagonal1_idxs.map do |idx|
+      @board_state[idx]
+    end
+    return diagonal1_elements[0] if diagonal1_elements.none?(&:nil?) && diagonal1_elements.uniq.size == 1
 
     diagonal2_idxs = [2, 4, 6]
-    return diagonal2_idxs[0] if diagonal2_idxs.none?(&:nil?) && diagonal2_idxs.uniq.size == 1
+    diagonal2_elements = diagonal2_idxs.map do |idx|
+      @board_state[idx]
+    end
+    return diagonal2_elements[0] if diagonal2_elements.none?(&:nil?) && diagonal2_elements.uniq.size == 1
 
     nil
   end
