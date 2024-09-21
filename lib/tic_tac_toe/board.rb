@@ -34,16 +34,6 @@ class Board
     !winner.nil? || full?
   end
 
-  private
-
-  def empty_board
-    Array.new(9)
-  end
-
-  def full?
-    @board_state.none?(&:nil?)
-  end
-
   def winner
     return winning_row if winning_row
 
@@ -52,6 +42,16 @@ class Board
     return winning_diagonal if winning_diagonal
 
     nil
+  end
+
+  private
+
+  def empty_board
+    Array.new(9)
+  end
+
+  def full?
+    @board_state.none?(&:nil?)
   end
 
   def winning_row
