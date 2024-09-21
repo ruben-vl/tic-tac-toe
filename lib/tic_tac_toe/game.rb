@@ -16,8 +16,8 @@ class Game
     until @board.game_end?
       player = @player1_turn ? 'x' : 'o'
       puts "It is player #{player}'s turn."
-      row = input_row
-      col = input_column
+      row = input_row.to_i
+      col = input_column.to_i
       placed = @board.add(player, row, col)
       if placed
         @player1_turn = !@player1_turn
